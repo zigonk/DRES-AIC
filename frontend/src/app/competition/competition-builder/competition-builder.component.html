@@ -191,6 +191,16 @@
             <mat-icon>add</mat-icon>
             Add team
           </button>
+          <!-- Create add all button -->
+          <button mat-button aria-label="Add all teams." matTooltip="Add all teams." (click)="addAllTeams()">
+            <mat-icon>add</mat-icon>
+            Add all teams
+          </button>
+          <!-- Remove all teams  -->
+          <button mat-button aria-label="Remove all teams." matTooltip="Remove all teams." (click)="removeAllTeams()">
+            <mat-icon>remove</mat-icon>
+            Remove all teams
+          </button>
         </div>
 
         <table #teamTable mat-table [dataSource]="competition.teams" [style.width]="'100%'">

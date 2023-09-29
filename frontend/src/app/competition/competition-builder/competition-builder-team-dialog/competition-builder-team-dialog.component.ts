@@ -67,7 +67,7 @@ export class CompetitionBuilderTeamDialogComponent {
   /**
    * Generates a random HTML color.
    */
-  private static randomColor(): string {
+  public static randomColor(): string {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {

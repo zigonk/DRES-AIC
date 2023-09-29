@@ -421,6 +421,33 @@ export class CompetitionBuilderComponent implements OnInit, OnDestroy, Deactivat
       });
   }
 
+  public addAllTeams() {
+    this.userService.getApiV1UserList().pipe(
+      map((value) => {
+        return value.filter((user) => user.role === RoleEnum.PARTICIPANT);
+      }),
+      shareReplay(1)
+    ).subscribe((users) => {
+      // Create team with random color for each user
+      let teams = users.map((user) => {
+        return {
+          name: user.username.slice(0, 8) + ((user.username.length > 8) ? '\n...' : ''),
+          color: CompetitionBuilderTeamDialogComponent.randomColor(),
+          users: [user.id]
+        } as RestTeam;
+      });
+      this.competition.teams.push(...teams);
+      this.dirty = true;
+      this.teamTable.renderRows();
+    });
+  }
+
+  public removeAllTeams() {
+    this.competition.teams = [];
+    this.dirty = true;
+    this.teamTable.renderRows();
+  }
+
   public editTeam(team: RestTeam) {
     const index = this.competition.teams.indexOf(team);
     if (index > -1) {

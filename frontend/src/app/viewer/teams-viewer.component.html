@@ -1,4 +1,5 @@
-<mat-card>
+<!-- Mat card zero padding -->
+<mat-card class="left" [style.padding]="0">
   <mat-card-content>
     <div class="flex" [style.overflow-x]="'auto'">
       <div
@@ -8,25 +9,28 @@
         [@highlight]="(highlight | async).get(team.uid)"
         (@highlight.done)="resetHighlight.next()"
       >
-        <h3 [style.text-align]="'center'">{{ team.name }}</h3>
+        <p class="team-name">{{ team.name }}</p>
 
         <div></div>
-        <div [style.background-color]="team.color" class="logo">
+        <!-- <div [style.background-color]="team.color" class="logo">
           <img src="{{ teamLogo(team) }}" />
-        </div>
+        </div> -->
         <div *ngIf="(state | async)?.taskRunStatus === 'ENDED' || (state | async)?.taskRunStatus === 'RUNNING'">
-          <p class="score" *ngIf="scores | async">
-            {{ (scores | async).get(team.uid) | number: '1.0-0' }}
-          </p>
+          <div class="score-container">
+           
+            <p class="counter">
+              <span class="CORRECT score-box">{{ correctSubmissions(team.uid) | async }}</span> 
+              <span class="WRONG score-box">{{ wrongSubmissions(team.uid) | async }}</span> 
+              <span class="INDETERMINATE score-box">{{ indeterminate(team.uid) | async }}</span>
+            </p>
+            <p class="score score-box" *ngIf="scores | async">{{ (scores | async).get(team.uid) | number: '1.0-0' }} </p>
+          </div>
 
-          <p class="counter">
-            <span class="CORRECT">{{ correctSubmissions(team.uid) | async }}</span> |
-            <span class="WRONG">{{ wrongSubmissions(team.uid) | async }}</span> |
-            <span class="INDETERMINATE">{{ indeterminate(team.uid) | async }}</span>
-          </p>
-
-          <div class="submissions">
-            <div *ngFor="let submission of submissionForTeam(team.uid) | async; trackBy:trackSubmission" [className]="'submission ' + submission.status">
+          <!-- <div class="submissions">
+            <div
+              *ngFor="let submission of submissionForTeam(team.uid) | async; trackBy: trackSubmission"
+              [className]="'submission ' + submission.status"
+            >
               <img
                 *ngIf="submission.id"
                 [src]="previewForSubmission(submission) | async"
@@ -34,7 +38,7 @@
               />
               <p *ngIf="!submission.id">?</p>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <audio #audio [muted]="(config.configAsObservable | async).effects.mute" hidden></audio>
