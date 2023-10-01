@@ -93,8 +93,8 @@
 
 .score {
   font-weight: bold;
-  background-color: darkcyan;
-  color: white;
+  background-color: #76d8ff;
+  color: rgb(0, 80, 69);
   box-sizing: border-box;
   font-size: 18px;
   text-align: center;
@@ -111,15 +111,16 @@
 }
 
 .CORRECT {
-  background-color: darkgreen;
+  color: black;
+  background-color: #cbff71;
 }
 
 .WRONG {
-  background-color: darkred;
+  background-color: #f03613;
 }
 
 .INDETERMINATE {
-  background-color: goldenrod;
+  background-color: rgb(255, 230, 0);
 }
 
 .score-box {

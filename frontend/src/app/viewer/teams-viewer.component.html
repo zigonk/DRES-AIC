@@ -21,7 +21,7 @@
             <p class="counter">
               <span class="CORRECT score-box">{{ correctSubmissions(team.uid) | async }}</span> 
               <span class="WRONG score-box">{{ wrongSubmissions(team.uid) | async }}</span> 
-              <span class="INDETERMINATE score-box">{{ indeterminate(team.uid) | async }}</span>
+              <!-- <span class="INDETERMINATE score-box">{{ indeterminate(team.uid) | async }}</span> -->
             </p>
             <p class="score score-box" *ngIf="scores | async">{{ (scores | async).get(team.uid) | number: '1.0-0' }} </p>
           </div>

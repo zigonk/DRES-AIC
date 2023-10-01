@@ -37,6 +37,7 @@ import { AppConfig } from '../../app.config';
 import { DeactivationGuarded } from '../../services/can-deactivate.guard';
 import RoleEnum = UserRequest.RoleEnum;
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { TeamsViewerComponent } from 'src/app/viewer/teams-viewer.component';
 
 @Component({
   selector: 'app-competition-builer',
@@ -429,9 +430,18 @@ export class CompetitionBuilderComponent implements OnInit, OnDestroy, Deactivat
       shareReplay(1)
     ).subscribe((users) => {
       // Create team with random color for each user
+    
       let teams = users.map((user) => {
+        // Check if user has team name
+        let teamname = '';
+        if (USER_TEAM_MAPPING[user.username]) {
+          teamname = USER_TEAM_MAPPING[user.username];
+        }
+        else {
+          teamname = user.username;
+        }
         return {
-          name: user.username.slice(0, 8) + ((user.username.length > 8) ? '\n...' : ''),
+          name: teamname.slice(0, 8) + ((teamname.length > 8) ? '\n...' : ''),
           color: CompetitionBuilderTeamDialogComponent.randomColor(),
           users: [user.id]
         } as RestTeam;
@@ -527,3 +537,69 @@ export class CompetitionBuilderComponent implements OnInit, OnDestroy, Deactivat
     delete event.returnValue;
   }
 }
+
+const USER_TEAM_MAPPING = 
+  {
+    'again': 'Again',
+    'aiobho': 'AIO_BHO',
+    'aiotk': 'AIO-TK',
+    'aristotle': 'Aristotle',
+    'atiso': 'Atiso',
+    'badgerteamz': 'Badger_Team Z',
+    'basicaio': 'Basic_AIO',
+    'bedaio': 'BED_AIO',
+    'c4tc4t': 'C4T',
+    'dionysus': 'Dionysus',
+    'dlteam': 'DL Team',
+    'eloaic': 'ELO@AIC',
+    'gigachad': 'Gigachad',
+    'greenjackpot': 'GreenJackpot',
+    'haidikichi': 'HaidiKichi',
+    'hdhhdh': 'HDH',
+    'homelander': 'HOMELANDER',
+    'in4questers': 'In4Questers_AIO',
+    'iulab513': 'IU-LAB-513',
+    'kronus': 'Kronus',
+    'lacdamls': 'lạc đà MLS',
+    'mmlabuit': 'MMLAB-UIT',
+    'muahexanh': 'Mùa Hè Xanh',
+    'newinsight': 'NewsInsight',
+    'pendingaio': 'Pending_AIO',
+    'pppppp': 'PPP',
+    'ptqus': 'PTQ.US',
+    'rookieaio': 'Rookie_AIO',
+    'scienceaio': 'Science AIO',
+    'siuminerva': 'SIU_Minerva',
+    'siupumpkin': 'SIU_Pumpkin',
+    'spksandbox': 'Spk_Sandbox',
+    'siutaskforce': 'SIU_Task Force X',
+    'thanos': 'Thanos',
+    'thepank': 'The PANK Alliance',
+    'tiuday': 'TIUDay',
+    'ubtechalpha': 'UBTECH-Alpha',
+    'uniberty': 'Uniberty',
+    'attention': 'UTE-AI Attention',
+    'uteaifluc': 'UTE-AI Fluc',
+    'visionary': 'Visionary Video Intelligence',
+    'balzewarrios': 'W1_BlazeWarriors',
+    'doppelganger': 'W1_Doppelganger',
+    'teamqqteams': 'W1_TeamQ-QTeams',
+    'aihoi': 'AIhoi',
+    'chicken': 'Chicken',
+    'cryingface': 'CryingFace',
+    'f4tvg': 'F4 TVG',
+    'flames': 'Flames',
+    'giadinh': 'Humans of Gia Dinh',
+    'itneverlate': 'IT never Late',
+    'khongbietgi': 'Không biết gì',
+    'littleboys': 'LITTLE BOYS',
+    'justforfun': 'NHH.JustForFun',
+    'nqnqnq': 'NQ',
+    'phunhuangang': 'Phu Nhuan Gang',
+    'pnitpnit': 'PNIT',
+    'quocsteam': "Quốc's team",
+    'khongthatbai': '!Thất bại',
+    'walle': 'Wall-E'
+}
+
+
