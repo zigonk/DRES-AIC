@@ -441,8 +441,9 @@ export class CompetitionBuilderComponent implements OnInit, OnDestroy, Deactivat
           teamname = user.username;
         }
         return {
-          name: teamname.slice(0, 8) + ((teamname.length > 8) ? '\n...' : ''),
-          color: CompetitionBuilderTeamDialogComponent.randomColor(),
+          // name: teamname.slice(0, 8) + ((teamname.length > 8) ? '\n...' : ''),
+          name: teamname,
+          color: "#01e8aa",
           users: [user.id]
         } as RestTeam;
       });

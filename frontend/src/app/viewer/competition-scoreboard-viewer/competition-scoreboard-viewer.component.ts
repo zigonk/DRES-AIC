@@ -216,12 +216,16 @@ export class CompetitionScoreboardViewerComponent implements OnInit {
           })
           .sort((t1, t2) => t2.score.score - t1.score.score);
 
+        // Only get top 10 teams
+        // teamsOrdered.splice(15);
+
         /* Array of per category scores for each team. */
         return scores
           .filter((s) => {
             return s.name !== 'sum';
           })
           .map((s) => {
+            // Only get top 10 teams
             /* In case there is no value, specifically set 0 as score for each team*/
             if (s.scores.length === 0) {
               return {
