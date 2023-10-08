@@ -1,7 +1,7 @@
 {
   "endpoint": {
     "host": "localhost",
-    "port": 8088,
+    "port": 8080,
     "tls": false
   },
   "effects": {

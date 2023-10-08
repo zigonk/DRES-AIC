@@ -564,7 +564,7 @@ const USER_TEAM_MAPPING =
     'lacdamls': 'lạc đà MLS',
     'mmlabuit': 'MMLAB-UIT',
     'muahexanh': 'Mùa Hè Xanh',
-    'newinsight': 'NewsInsight',
+    'newinsights': 'NewsInsight',
     'pendingaio': 'Pending_AIO',
     'pppppp': 'PPP',
     'ptqus': 'PTQ.US',
